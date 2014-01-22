@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Html
+namespace CodeRenderer.MarkupStructure
 {
     class InputReader
     {

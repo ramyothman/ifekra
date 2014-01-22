@@ -19,13 +19,13 @@ namespace CodeRenderer
         public Element ParentElement;
 
         public Element() { }
-        public Element(List<Html.TagAttribute> Attributes, Element ParentElement) 
+        public Element(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) 
         { 
             this.ParentElement = ParentElement;
             this.Attributes = new Attributes(Attributes, ParentElement);
             this.Style = new Style(this.Attributes, ParentElement);
         }
-        public static Element CreateElement(Html.Tag tag, Element ParentElement)
+        public static Element CreateElement(CodeRenderer.MarkupStructure.Tag tag, Element ParentElement)
         {
             Element element;
             switch (tag.name)
@@ -58,7 +58,7 @@ namespace CodeRenderer
     {
         public Head Head;
         public Body Body;
-        public RootElement(List<Html.TagAttribute> Attributes) : base(Attributes, null) { }
+        public RootElement(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes) : base(Attributes, null) { }
         public override void Print()
         {
             Head.Print();
@@ -77,7 +77,7 @@ namespace CodeRenderer
     class Division : Element
     {
         public List<Element> Elements;
-        public Division(List<Html.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement)
+        public Division(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement)
         { 
             this.type = ElementType.DIVISION; 
             this.Elements = new List<Element>(); 
@@ -112,7 +112,7 @@ namespace CodeRenderer
             this.type = ElementType.TEXT;
             this.text = text;
         }
-        public Text(Html.Text text, Element ParentElement)
+        public Text(CodeRenderer.MarkupStructure.Text text, Element ParentElement)
             : base(null, ParentElement)
         {
             this.type = ElementType.TEXT;
@@ -133,10 +133,10 @@ namespace CodeRenderer
     class Image : Element
     {
         public string Path, Alt;
-        public Image(List<Html.TagAttribute> Attributes, Element ParentElement)
+        public Image(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement)
             : base(Attributes, ParentElement)
         {
-            foreach (Html.TagAttribute attribute in Attributes)
+            foreach (CodeRenderer.MarkupStructure.TagAttribute attribute in Attributes)
             {
                 switch (attribute.Key)
                 {
@@ -161,7 +161,7 @@ namespace CodeRenderer
     class Head : Division
     {
         public string Title;
-        public Head(List<Html.TagAttribute> Attributes, Element ParentElement) : base(Attributes,ParentElement) { }
+        public Head(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes,ParentElement) { }
         public override void Print()
         {
             Console.WriteLine("Title: \"{0}\"\n", Title);
@@ -170,7 +170,7 @@ namespace CodeRenderer
     }
     class Body : Division
     {
-        public Body(List<Html.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) { }
+        public Body(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) { }
         public override void Print()
         {
             foreach (Element element in Elements)
@@ -180,7 +180,7 @@ namespace CodeRenderer
     }
     class Paragraph : Division
     {
-        public Paragraph(List<Html.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) {  }
+        public Paragraph(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) {  }
         public override void Add(Element element)
         {
             base.Add(element);

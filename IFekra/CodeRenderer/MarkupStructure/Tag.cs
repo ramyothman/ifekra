@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Html
+namespace CodeRenderer.MarkupStructure
 {
     enum TokenType
     {

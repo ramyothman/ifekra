@@ -10,7 +10,7 @@ namespace CodeRenderer
     {
         static void Main(string[] args)
         {
-            Page page = new Page(new Html.Html("test.html"));
+            Page page = new Page(new CodeRenderer.MarkupStructure.Html("test.html"));
             //Console.WriteLine("Title = " + page.Title);
             /*foreach (Element element in page.Body.Elements)
             {

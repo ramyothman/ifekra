@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace Html
+namespace CodeRenderer.MarkupStructure
 {
     class TagAttribute
     {

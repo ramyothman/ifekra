@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using CodeRenderer.MarkupStructure;
 
-namespace Html
+namespace CodeRenderer.MarkupStructure
 {
-    class Html
+    public class Html
     {
         public Tag RootTag;
         InputReader reader;

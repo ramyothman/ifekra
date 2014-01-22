@@ -11,10 +11,10 @@ namespace CodeRenderer
         static Page page;
 
         #region Html
-        public static void Render(Page page,Html.Html html)
+        public static void Render(Page page,CodeRenderer.MarkupStructure.Html html)
         {
             Renderer.page = page;
-            foreach (Html.Tag tag in html.RootTag.Content)
+            foreach (CodeRenderer.MarkupStructure.Tag tag in html.RootTag.Content)
             {
                 switch (tag.name)
                 {
@@ -31,16 +31,16 @@ namespace CodeRenderer
             }
 
         }
-        protected static Head RenderHead(Html.Tag HeadTag,Element ParentElement)
+        protected static Head RenderHead(CodeRenderer.MarkupStructure.Tag HeadTag,Element ParentElement)
         {
             Head Head = new Head(HeadTag.Attributes,ParentElement);
-            foreach (Html.Tag tag in HeadTag.Content)
+            foreach (CodeRenderer.MarkupStructure.Tag tag in HeadTag.Content)
                 if (tag.name == "title")
                     Head.Title = RenderTitle(tag);
                 else throw new NotImplementedException();
             return Head;
         }
-        protected static Element RenderTag(Html.Tag tag,Element ParentElement)
+        protected static Element RenderTag(CodeRenderer.MarkupStructure.Tag tag,Element ParentElement)
         {
             Element element = Element.CreateElement(tag,ParentElement);
             bool isPrevText = false;
@@ -49,17 +49,17 @@ namespace CodeRenderer
                 case ElementType.DIVISION:
 
                     Division division = (Division)element;
-                    foreach(Html.Token token in tag.Content)
-                        if (token.type == Html.TokenType.TEXT)
+                    foreach(CodeRenderer.MarkupStructure.Token token in tag.Content)
+                        if (token.type == CodeRenderer.MarkupStructure.TokenType.TEXT)
                         {
                             if (isPrevText)
                                 division.Add(new Text(" ",division));
-                            division.Add(new Text((Html.Text)token,division));
+                            division.Add(new Text((CodeRenderer.MarkupStructure.Text)token,division));
                             isPrevText = true;
                         }
                         else
                         {
-                            division.Add(RenderTag((Html.Tag)token,division));
+                            division.Add(RenderTag((CodeRenderer.MarkupStructure.Tag)token,division));
                             isPrevText = false;
                         }
 
@@ -70,10 +70,10 @@ namespace CodeRenderer
             }
             return element;
         }
-        protected static string RenderTitle(Html.Tag TitleTag)
+        protected static string RenderTitle(CodeRenderer.MarkupStructure.Tag TitleTag)
         {
             string Title = "";
-            foreach (Html.Text text in TitleTag.Content)
+            foreach (CodeRenderer.MarkupStructure.Text text in TitleTag.Content)
             {
                 if (text.text.Trim().Length == 0) continue;
                 if (Title.Length > 0)

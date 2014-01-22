@@ -34,7 +34,7 @@ namespace CodeRenderer
         protected static List<KeyValuePair<string,string>> ParseStyle(string StyleString)
         {
             List<KeyValuePair<string, string>> StyleList = new List<KeyValuePair<string, string>>();
-            string[] tokens = Html.StringTokenizer.Split(StyleString, new string[] { ":", ";" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] tokens = CodeRenderer.MarkupStructure.StringTokenizer.Split(StyleString, new string[] { ":", ";" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < tokens.Length; i+=4)
                 StyleList.Add(new KeyValuePair<string,string>(tokens[i], tokens[i + 2]));
             return StyleList;
