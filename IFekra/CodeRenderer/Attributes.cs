@@ -24,6 +24,13 @@ namespace CodeRenderer
                 }
             }
         }
+        public override string ToString()
+        {
+            string ret = "";
+            foreach (KeyValuePair<string, string> pair in Map)
+                ret += " " +pair.Key + " = \"" + pair.Value + "\"";
+            return ret;
+        }
         
     }
 }

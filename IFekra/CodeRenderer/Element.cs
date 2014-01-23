@@ -8,7 +8,7 @@ namespace CodeRenderer
 {
     enum ElementType
     {
-        TEXT, IMAGE, DIVISION, NEWLINE
+        TEXT, IMAGE, HasElements, NEWLINE
     }
     
     abstract class Element
@@ -17,6 +17,7 @@ namespace CodeRenderer
         public Attributes Attributes;
         public Style Style;
         public Element ParentElement;
+        public List<Element> Elements;
 
         public Element() { }
         public Element(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) 
@@ -24,7 +25,15 @@ namespace CodeRenderer
             this.ParentElement = ParentElement;
             this.Attributes = new Attributes(Attributes, ParentElement);
             this.Style = new Style(this.Attributes, ParentElement);
+            this.Elements = new List<Element>();
+            this.type = ElementType.HasElements;
+            
         }
+        public virtual void Add(Element element)
+        {
+            Elements.Add(element);
+        }
+        
         public static Element CreateElement(CodeRenderer.MarkupStructure.Tag tag, Element ParentElement)
         {
             Element element;
@@ -51,7 +60,25 @@ namespace CodeRenderer
             }
             return element;
         }
-        public abstract void Print();
+        public virtual void Print()
+        {
+            Console.WriteLine();
+            Console.Write(">> Element Style: ");
+            Style.Print();
+
+            Console.WriteLine();
+            foreach (Element element in Elements)
+                element.Print();
+            Console.WriteLine();
+            return;
+        }
+        public override string ToString()
+        {
+            string ret = "";
+            foreach (Element element in Elements)
+                ret += element.ToString();
+            return ret;
+        }
     }
     
     class RootElement : Element
@@ -64,6 +91,15 @@ namespace CodeRenderer
             Head.Print();
             Body.Print();
         }
+        public override string ToString()
+        {
+            string ret = "";
+            ret += "<html" + this.Attributes.ToString() + ">\n";
+            ret += Head.ToString();
+            ret += Body.ToString();
+            ret += "</html>";
+            return ret;
+        }
 
     }
     class NewLine : Element
@@ -73,32 +109,30 @@ namespace CodeRenderer
             this.type = ElementType.NEWLINE; 
         }
         public override void Print() { Console.WriteLine(); }
+        public override string ToString()
+        {
+            return "<br/>\n";
+        }
     }
     class Division : Element
     {
-        public List<Element> Elements;
-        public Division(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement)
-        { 
-            this.type = ElementType.DIVISION; 
-            this.Elements = new List<Element>(); 
-        }
-        public virtual void Add(Element element)
+        public Division(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement)
+            :base(Attributes,ParentElement)
         {
-            Elements.Add(element);
+            this.type = ElementType.HasElements;
         }
         public override void Print()
         {
-            Console.WriteLine();
-            Console.Write(">> Division Style: ");
-            Style.Print();
-            
-            Console.WriteLine();
-            foreach (Element element in Elements)
-                element.Print();
-            Console.WriteLine();
-            return;
+            base.Print();
         }
-
+        public override string ToString()
+        {
+            string ret = "";
+            ret += "<div" + this.Attributes.ToString() + ">\n";
+            ret += base.ToString();
+            ret += "</div>\n";
+            return ret;
+        }
 
     }
     class Text : Element
@@ -129,6 +163,10 @@ namespace CodeRenderer
         {
             Console.Write(text);
         }
+        public override string ToString()
+        {
+            return this.text + "\n";
+        }
     }
     class Image : Element
     {
@@ -136,6 +174,7 @@ namespace CodeRenderer
         public Image(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement)
             : base(Attributes, ParentElement)
         {
+            this.type = ElementType.IMAGE;
             foreach (CodeRenderer.MarkupStructure.TagAttribute attribute in Attributes)
             {
                 switch (attribute.Key)
@@ -156,9 +195,16 @@ namespace CodeRenderer
             Console.Write("Image @ " + "\"" + Path + "\"");
             return;
         }
+        public override string ToString()
+        {
+            string ret = "";
+            ret += "<img" + this.Attributes.ToString() + "/>\n";
+            return ret;
+        }
+
     }
     
-    class Head : Division
+    class Head : Element
     {
         public string Title;
         public Head(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes,ParentElement) { }
@@ -166,9 +212,16 @@ namespace CodeRenderer
         {
             Console.WriteLine("Title: \"{0}\"\n", Title);
         }
+        public override string ToString()
+        {
+            string ret = "<head" + this.Attributes + ">\n";
+            ret += base.ToString();
+            ret += "/head\n";
+            return ret;
+        }
 
     }
-    class Body : Division
+    class Body : Element
     {
         public Body(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) { }
         public override void Print()
@@ -176,9 +229,16 @@ namespace CodeRenderer
             foreach (Element element in Elements)
                 element.Print();
         }
+        public override string ToString()
+        {
+            string ret = "<body" + this.Attributes.ToString() + ">\n";
+            ret += base.ToString();
+            ret += "</body>\n";
+            return ret;
+        }
 
     }
-    class Paragraph : Division
+    class Paragraph : Element
     {
         public Paragraph(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) {  }
         public override void Add(Element element)
@@ -188,6 +248,13 @@ namespace CodeRenderer
         public override void Print()
         {
             base.Print();
+        }
+        public override string ToString()
+        {
+            string ret = "<p" + this.Attributes.ToString() + ">\n";
+            ret += base.ToString();
+            ret += "</p>\n";
+            return ret;
         }
     }
     

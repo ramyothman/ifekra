@@ -19,6 +19,10 @@ namespace CodeRenderer
         {
             Html.Print();
         }
+        public override string ToString()
+        {
+            return Html.ToString();
+        }
 
 
     }

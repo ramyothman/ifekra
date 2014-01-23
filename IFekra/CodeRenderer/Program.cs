@@ -18,7 +18,8 @@ namespace CodeRenderer
                 if (((Text)element).text != "\n")
                     Console.Write(" ");
             }*/
-            page.Print();
+            //page.Print();
+            Console.WriteLine(page);
             Console.WriteLine("\n-----\nEnd\n");
             Console.ReadLine();
         }

@@ -43,26 +43,15 @@ namespace CodeRenderer
         protected static Element RenderTag(CodeRenderer.MarkupStructure.Tag tag,Element ParentElement)
         {
             Element element = Element.CreateElement(tag,ParentElement);
-            bool isPrevText = false;
             switch (element.type)
             {
-                case ElementType.DIVISION:
+                case ElementType.HasElements:
 
-                    Division division = (Division)element;
                     foreach(CodeRenderer.MarkupStructure.Token token in tag.Content)
                         if (token.type == CodeRenderer.MarkupStructure.TokenType.TEXT)
-                        {
-                            if (isPrevText)
-                                division.Add(new Text(" ",division));
-                            division.Add(new Text((CodeRenderer.MarkupStructure.Text)token,division));
-                            isPrevText = true;
-                        }
+                            element.Add(new Text((CodeRenderer.MarkupStructure.Text)token,element));
                         else
-                        {
-                            division.Add(RenderTag((CodeRenderer.MarkupStructure.Tag)token,division));
-                            isPrevText = false;
-                        }
-
+                            element.Add(RenderTag((CodeRenderer.MarkupStructure.Tag)token,element));
                     break;
                 default:
                     //throw new NotImplementedException();
