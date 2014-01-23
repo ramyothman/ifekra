@@ -42,7 +42,7 @@
     <Compile Include="Markup\Elements\Element.cs" />
     <Compile Include="Markup\Elements\Html\Body.cs" />
     <Compile Include="Markup\Elements\Html\Comment.cs" />
-    <Compile Include="Markup\Elements\Html\FormControls\Input.cs" />
+    <Compile Include="Markup\Elements\Html\FormElements\Input.cs" />
     <Compile Include="Markup\Elements\Html\Head.cs" />
     <Compile Include="Markup\Elements\Html\Image.cs" />
     <Compile Include="Markup\Elements\Html\NewLine.cs" />
@@ -54,6 +54,7 @@
     <Compile Include="Markup\Tag.cs" />
     <Compile Include="Markup\TagAttribute.cs" />
     <Compile Include="Markup\Token.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
