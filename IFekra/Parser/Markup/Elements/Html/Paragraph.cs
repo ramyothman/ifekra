@@ -8,6 +8,6 @@ namespace Parser.Markup.Elements.Html
 {
     public class Paragraph : Element
     {
-
+        
     }
 }
