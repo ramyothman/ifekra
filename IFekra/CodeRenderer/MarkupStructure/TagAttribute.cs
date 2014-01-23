@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeRenderer.MarkupStructure
 {
-    class TagAttribute
+    public class TagAttribute
     {
         KeyValuePair<string, string > pair;
         public string Key { get { return pair.Key; } }

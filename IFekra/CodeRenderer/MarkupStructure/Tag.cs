@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CodeRenderer.MarkupStructure
 {
-    enum TokenType
+    public enum TokenType
     {
         TAG,TEXT
     }
-    abstract class Token
+    public abstract class Token
     {
         public TokenType type;
         abstract public void Print(int depth);
@@ -29,7 +29,7 @@ namespace CodeRenderer.MarkupStructure
             Console.WriteLine(text); 
         }
     }
-    class Tag : Token
+    public class Tag : Token
     {
         public string name;
         public List<Token> Content;
