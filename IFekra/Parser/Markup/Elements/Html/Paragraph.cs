@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Parser.Markup.Elements.Html
 {
-    public class Paragraph
+    public class Paragraph : Element
     {
 
     }

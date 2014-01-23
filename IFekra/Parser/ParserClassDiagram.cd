@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Parser.Markup.Elements.Element" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Element.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Body" Collapsed="true">
+    <Position X="3.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Body.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Comment" Collapsed="true">
+    <Position X="12.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Head" Collapsed="true">
+    <Position X="6" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Head.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Image" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.NewLine" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\NewLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Paragraph" Collapsed="true">
+    <Position X="19.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Paragraph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Root" Collapsed="true">
+    <Position X="17.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Root.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Section" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.Text" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\Text.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Elements.Html.FormControls.Input" Collapsed="true">
+    <Position X="15" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Elements\Html\FormControls\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.MarkupDocument" Collapsed="true">
+    <Position X="15.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\MarkupDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Tag" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Tag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.TagAttribute" Collapsed="true">
+    <Position X="17.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\TagAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser.Markup.Token" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Markup\Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
