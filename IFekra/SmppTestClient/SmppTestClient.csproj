@@ -55,6 +55,12 @@
     <Compile Include="SMSControl.cs" />
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmppClient\SmppClient.csproj">
+      <Project>{8cbf9913-5ed6-4c40-8675-385fe08f15aa}</Project>
+      <Name>SmppClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
