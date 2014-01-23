@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{767C4C37-39CB-44CA-B65E-8ECB3D5EC2E0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0FE88CA7-BE3F-4EDE-9FC8-F26ECFBB8852}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser</RootNamespace>
-    <AssemblyName>Parser</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>TestParser</RootNamespace>
+    <AssemblyName>TestParser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,32 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Markup\Elements\Element.cs" />
-    <Compile Include="Markup\Elements\Html\Body.cs" />
-    <Compile Include="Markup\Elements\Html\Comment.cs" />
-    <Compile Include="Markup\Elements\Html\FormElements\Input.cs" />
-    <Compile Include="Markup\Elements\Html\Head.cs" />
-    <Compile Include="Markup\Elements\Html\Image.cs" />
-    <Compile Include="Markup\Elements\Html\NewLine.cs" />
-    <Compile Include="Markup\Elements\Html\Paragraph.cs" />
-    <Compile Include="Markup\Elements\Html\Root.cs" />
-    <Compile Include="Markup\Elements\Html\Section.cs" />
-    <Compile Include="Markup\Elements\Html\Text.cs" />
-    <Compile Include="Markup\MarkupDocument.cs" />
-    <Compile Include="Markup\Tag.cs" />
-    <Compile Include="Markup\TagAttribute.cs" />
-    <Compile Include="Markup\Token.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reader\InputReader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Css\" />
-    <Folder Include="Javascript\JQuery\" />
-    <Folder Include="Markup\Enums\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ParserClassDiagram.cd" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

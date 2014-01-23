@@ -77,7 +77,7 @@ namespace CodeRenderer.MarkupStructure
         private void PrintTagTree(Tag tag,int depth)
         {
             foreach (Token token in tag.Content)
-                if (token.type == TokenType.TEXT)
+                if (token is CodeRenderer.MarkupStructure.Text)
                     token.Print(depth);
                 else
                 {

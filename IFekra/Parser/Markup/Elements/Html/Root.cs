@@ -8,5 +8,6 @@ namespace Parser.Markup.Elements.Html
 {
     public class Root : Element
     {
+
     }
 }

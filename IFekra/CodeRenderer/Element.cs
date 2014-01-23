@@ -40,7 +40,7 @@ namespace CodeRenderer
                     element = new Body(tag.Attributes,ParentElement);
                     break;
                 case "div":
-                    element = new Division(tag.Attributes,ParentElement);
+                    element = new Section(tag.Attributes,ParentElement);
                     break;
                 case "p":
                     element = new Paragraph(tag.Attributes,ParentElement);
@@ -74,10 +74,10 @@ namespace CodeRenderer
         }
         public override void Print() { Console.WriteLine(); }
     }
-    class Division : Element
+    class Section : Element
     {
         public List<Element> Elements;
-        public Division(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement)
+        public Section(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement)
         { 
             this.type = ElementType.DIVISION; 
             this.Elements = new List<Element>(); 
@@ -158,7 +158,7 @@ namespace CodeRenderer
         }
     }
     
-    class Head : Division
+    class Head : Section
     {
         public string Title;
         public Head(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes,ParentElement) { }
@@ -168,7 +168,7 @@ namespace CodeRenderer
         }
 
     }
-    class Body : Division
+    class Body : Section
     {
         public Body(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) { }
         public override void Print()
@@ -178,7 +178,7 @@ namespace CodeRenderer
         }
 
     }
-    class Paragraph : Division
+    class Paragraph : Section
     {
         public Paragraph(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) {  }
         public override void Add(Element element)

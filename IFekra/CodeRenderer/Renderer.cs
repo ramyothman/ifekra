@@ -48,9 +48,10 @@ namespace CodeRenderer
             {
                 case ElementType.DIVISION:
 
-                    Division division = (Division)element;
+                    Section division = (Section)element;
                     foreach(CodeRenderer.MarkupStructure.Token token in tag.Content)
-                        if (token.type == CodeRenderer.MarkupStructure.TokenType.TEXT)
+                        if (token is CodeRenderer.MarkupStructure.Text)
+                        //if (token.type == CodeRenderer.MarkupStructure.TokenType.TEXT)
                         {
                             if (isPrevText)
                                 division.Add(new Text(" ",division));

@@ -5,13 +5,9 @@ using System.Text;
 
 namespace CodeRenderer.MarkupStructure
 {
-    public enum TokenType
-    {
-        TAG,TEXT
-    }
+    
     public abstract class Token
     {
-        public TokenType type;
         abstract public void Print(int depth);
     }
     class Text : Token
@@ -20,7 +16,6 @@ namespace CodeRenderer.MarkupStructure
         public Text(string text) 
         {
             this.text = text;
-            this.type = TokenType.TEXT;
         }
         override public void Print(int depth = 0) 
         {
@@ -44,7 +39,7 @@ namespace CodeRenderer.MarkupStructure
         {
             for (int i = 0; i < depth; i++)
                 Console.Write("\t");
-            Console.WriteLine(type); 
+            Console.WriteLine(this.GetType().ToString()); 
         }
         
     }
