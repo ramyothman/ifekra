@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeRenderer", "CodeRendere
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCodeRenderer", "TestCodeRenderer\TestCodeRenderer.csproj", "{B688FFFD-5E8D-4DDA-9DA3-28EB501B1649}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkupLibrary", "MarkupLibrary\MarkupLibrary.csproj", "{ECFA4C6F-915B-4B40-82AE-8F32755355F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B688FFFD-5E8D-4DDA-9DA3-28EB501B1649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B688FFFD-5E8D-4DDA-9DA3-28EB501B1649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B688FFFD-5E8D-4DDA-9DA3-28EB501B1649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFA4C6F-915B-4B40-82AE-8F32755355F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFA4C6F-915B-4B40-82AE-8F32755355F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFA4C6F-915B-4B40-82AE-8F32755355F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFA4C6F-915B-4B40-82AE-8F32755355F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
