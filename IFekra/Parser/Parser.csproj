@@ -56,12 +56,12 @@
     <Compile Include="Markup\Token.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reader\InputReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\" />
     <Folder Include="Javascript\JQuery\" />
     <Folder Include="Markup\Enums\" />
+    <Folder Include="Reader\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParserClassDiagram.cd" />
