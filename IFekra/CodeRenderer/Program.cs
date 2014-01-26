@@ -11,6 +11,8 @@ namespace CodeRenderer
         static void Main(string[] args)
         {
             Page page = new Page(new CodeRenderer.MarkupStructure.Html("test.html"));
+            Page another = (Page)page.Clone();
+            
             //Console.WriteLine("Title = " + page.Title);
             /*foreach (Element element in page.Body.Elements)
             {
@@ -20,6 +22,7 @@ namespace CodeRenderer
             }*/
             //page.Print();
             Console.WriteLine(page);
+            Console.WriteLine(another);
             Console.WriteLine("\n-----\nEnd\n");
             Console.ReadLine();
         }

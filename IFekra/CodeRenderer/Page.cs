@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 using CodeRenderer.MarkupStructure;
 namespace CodeRenderer
 {
-    class Page
+    class Page : ICloneable
     {
         public RootElement Html;
 
+        public Page(Page Page)
+        {
+            this.Html = (RootElement)Page.Html.Clone();
+        }
+        public object Clone()
+        {
+            return new Page(this);
+        }
+        
         public Page(CodeRenderer.MarkupStructure.Html html)
         {
             this.Html = new RootElement(html.RootTag.Attributes);

@@ -6,9 +6,25 @@ using System.Threading.Tasks;
 
 namespace CodeRenderer
 {
-    class Style
+    class Style : ICloneable
     {
         public Dictionary<string, string> Map;
+        public Style(Style Style)
+        {
+            this.Map = new Dictionary<string, string>(Style.Map);
+        }
+
+        public object Clone() { return new Style(this); }
+        public override string ToString()
+        {
+            string ret = " style = \"";
+            foreach(KeyValuePair<string,string> pair in Map)
+            {
+                ret += pair.Key + " : " + pair.Value + "; ";
+            }
+            ret+="\"";
+            return ret;
+        }
         public Style(Attributes Attributes, Element ParentElement) 
         {
             this.Map = new Dictionary<string, string>();

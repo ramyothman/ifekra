@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace CodeRenderer
 {
-    class Attributes
+    class Attributes: ICloneable
     {
         public Dictionary<string, string> Map;
+
+        public Attributes(Attributes Attributes)
+        {
+            this.Map = new Dictionary<string, string>(Attributes.Map);
+        }
         public Attributes(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement = null)
         {
             Map = new Dictionary<string, string>();
@@ -28,9 +33,18 @@ namespace CodeRenderer
         {
             string ret = "";
             foreach (KeyValuePair<string, string> pair in Map)
-                ret += " " +pair.Key + " = \"" + pair.Value + "\"";
+            {
+                if (pair.Key == "style") continue; // Don't print the non-inherited style
+                ret += " " + pair.Key + " = \"" + pair.Value + "\"";
+
+            }
             return ret;
         }
         
+        public object Clone()
+        {
+            return new Attributes(this);
+        }
+
     }
 }

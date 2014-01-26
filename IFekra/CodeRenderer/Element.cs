@@ -14,12 +14,30 @@ namespace CodeRenderer
     abstract class Element
     {
         public ElementType type;
-        public Attributes Attributes;
-        public Style Style;
+        public Attributes Attributes;   // Contains the non-inherited (old) style
+        public Style Style;             // Contains the inherited style
         public Element ParentElement;
         public List<Element> Elements;
 
         public Element() { }
+        public Element(Element Element) // without Parent
+        {
+            this.type = Element.type;
+            this.Attributes = (Attributes)Element.Attributes.Clone();
+            this.Style = (Style)Element.Style.Clone();
+            this.Elements = new List<Element>();
+            foreach (Element ChildRef in Element.Elements)
+            {
+                Element ChildClone = (Element)(ChildRef.Clone());
+                ChildClone.ParentElement = this;
+                this.Elements.Add(ChildClone);
+            }
+            this.ParentElement = null;
+        }
+
+        public abstract object Clone();
+        
+
         public Element(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) 
         { 
             this.ParentElement = ParentElement;
@@ -79,12 +97,30 @@ namespace CodeRenderer
                 ret += element.ToString();
             return ret;
         }
+
+        public string AttributesString()
+        {
+            return this.Attributes.ToString() + this.Style.ToString();
+        }
+
+        
     }
     
-    class RootElement : Element
+    class RootElement : Element, ICloneable
     {
         public Head Head;
         public Body Body;
+
+        public RootElement(RootElement Root) : base(Root)
+        {
+            this.Head = (Head)Root.Head.Clone();
+            this.Body = (Body)Root.Body.Clone();
+        }
+        public override object Clone()
+        {
+            return new RootElement(this);
+        }
+
         public RootElement(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes) : base(Attributes, null) { }
         public override void Print()
         {
@@ -94,19 +130,80 @@ namespace CodeRenderer
         public override string ToString()
         {
             string ret = "";
-            ret += "<html" + this.Attributes.ToString() + ">\n";
+            ret += "<html" + AttributesString() + ">\n";
             ret += Head.ToString();
             ret += Body.ToString();
             ret += "</html>";
             return ret;
         }
 
+
+
+        
+
     }
-    class NewLine : Element
+
+    class Head : Element , ICloneable
+    {
+        public string Title;
+
+        public Head(Head Head) : base(Head)
+        {
+            this.Title = new string(Head.Title.ToCharArray());
+        }
+        public override object Clone()
+        {
+            return new Head(this);
+        }
+        public Head(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes, ParentElement) { }
+        public override void Print()
+        {
+            Console.WriteLine("Title: \"{0}\"\n", Title);
+        }
+        public override string ToString()
+        {
+            string ret = "<head" + AttributesString() + ">\n";
+            ret += base.ToString();
+            ret += "/head\n";
+            return ret;
+        }
+
+    }
+    class Body : Element , ICloneable
+    {
+
+        public Body(Body Body) : base(Body) { }
+        public override object Clone()
+        {
+            return new Body(this);
+        }
+
+        public Body(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes, ParentElement) { }
+        public override void Print()
+        {
+            foreach (Element element in Elements)
+                element.Print();
+        }
+        public override string ToString()
+        {
+            string ret = "<body" + AttributesString() + ">\n";
+            ret += base.ToString();
+            ret += "</body>\n";
+            return ret;
+        }
+
+
+    }
+    
+    class NewLine : Element , ICloneable
     {
         public NewLine(Element ParentElement) 
         { 
             this.type = ElementType.NEWLINE; 
+        }
+        public override object Clone()
+        {
+            return new NewLine(null);
         }
         public override void Print() { Console.WriteLine(); }
         public override string ToString()
@@ -114,12 +211,17 @@ namespace CodeRenderer
             return "<br/>\n";
         }
     }
-    class Division : Element
+    class Division : Element , ICloneable
     {
         public Division(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement)
             :base(Attributes,ParentElement)
         {
             this.type = ElementType.HasElements;
+        }
+        public Division(Division Division) : base(Division) { }
+        public override object Clone()
+        {
+            return new Division(this);
         }
         public override void Print()
         {
@@ -128,18 +230,28 @@ namespace CodeRenderer
         public override string ToString()
         {
             string ret = "";
-            ret += "<div" + this.Attributes.ToString() + ">\n";
+            ret += "<div" + AttributesString() + ">\n";
             ret += base.ToString();
             ret += "</div>\n";
             return ret;
         }
 
     }
-    class Text : Element
+    class Text : Element , ICloneable
     {
         public string text;
         public static string[] keys = { "&amp", "&lt", "&gt", "&quot" };
         public static string[] values = { "&", "<", ">", "\"" };
+
+        public Text(Text Text)
+            : base(Text)
+        {
+            this.text = new string(Text.text.ToCharArray());
+        }
+        public override object Clone()
+        {
+            return new Text(this);
+        }
         public Text(string text, Element ParentElement)
             : base(null, ParentElement)
         {
@@ -168,9 +280,20 @@ namespace CodeRenderer
             return this.text + "\n";
         }
     }
-    class Image : Element
+    class Image : Element , ICloneable
     {
         public string Path, Alt;
+
+        public Image(Image Image)
+            : base(Image)
+        {
+            this.Path = new string(Image.Path.ToCharArray());
+            this.Alt = new string(Image.Alt.ToCharArray());
+        }
+        public override object Clone()
+        {
+            return new Image(this);
+        }
         public Image(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement)
             : base(Attributes, ParentElement)
         {
@@ -198,49 +321,21 @@ namespace CodeRenderer
         public override string ToString()
         {
             string ret = "";
-            ret += "<img" + this.Attributes.ToString() + "/>\n";
+            ret += "<img" + AttributesString() + "/>\n";
             return ret;
         }
 
     }
-    
-    class Head : Element
-    {
-        public string Title;
-        public Head(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes, Element ParentElement) : base(Attributes,ParentElement) { }
-        public override void Print()
-        {
-            Console.WriteLine("Title: \"{0}\"\n", Title);
-        }
-        public override string ToString()
-        {
-            string ret = "<head" + this.Attributes + ">\n";
-            ret += base.ToString();
-            ret += "/head\n";
-            return ret;
-        }
-
-    }
-    class Body : Element
-    {
-        public Body(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) { }
-        public override void Print()
-        {
-            foreach (Element element in Elements)
-                element.Print();
-        }
-        public override string ToString()
-        {
-            string ret = "<body" + this.Attributes.ToString() + ">\n";
-            ret += base.ToString();
-            ret += "</body>\n";
-            return ret;
-        }
-
-    }
-    class Paragraph : Element
+    class Paragraph : Element , ICloneable
     {
         public Paragraph(List<CodeRenderer.MarkupStructure.TagAttribute> Attributes,Element ParentElement) : base(Attributes,ParentElement) {  }
+
+        public Paragraph(Paragraph Paragraph)
+            : base(Paragraph) { }
+        public override object Clone()
+        {
+            return new Paragraph(this);
+        }
         public override void Add(Element element)
         {
             base.Add(element);
@@ -251,7 +346,7 @@ namespace CodeRenderer
         }
         public override string ToString()
         {
-            string ret = "<p" + this.Attributes.ToString() + ">\n";
+            string ret = "<p" + AttributesString() + ">\n";
             ret += base.ToString();
             ret += "</p>\n";
             return ret;
